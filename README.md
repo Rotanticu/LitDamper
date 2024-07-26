@@ -51,7 +51,7 @@ The full version of documentation can be found [here](https://annulusgames.githu
 3. Enter the following URL:
 
 ```
-https://github.com/AnnulusGames/LitMotion.git?path=src/LitMotion/Assets/LitMotion
+https://github.com/Rotanticu/LitDamper.git?path=src/LitMotion/Assets/LitMotion
 ```
 
 Alternatively, open Packages/manifest.json and add the following to the dependencies block:
@@ -59,7 +59,7 @@ Alternatively, open Packages/manifest.json and add the following to the dependen
 ```json
 {
     "dependencies": {
-        "com.annulusgames.lit-motion": "https://github.com/AnnulusGames/LitMotion.git?path=src/LitMotion/Assets/LitMotion"
+        "com.annulusgames.lit-damper": "https://github.com/Rotanticu/LitDamper.git?path=src/LitMotion/Assets/LitMotion"
     }
 }
 ```
