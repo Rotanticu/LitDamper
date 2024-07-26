@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEditor;
 
-namespace LitMotion.Editor
+namespace LitDamper.Editor
 {
     internal static class SplitterGUILayout
     {

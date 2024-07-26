@@ -7,7 +7,7 @@ using PlayerLoopType = UnityEngine.PlayerLoop;
 using UnityEditor;
 #endif
 
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// Types of PlayerLoop inserted for motion updates
@@ -59,14 +59,14 @@ namespace LitMotion
             if (initialized) return;
 #endif
 
-            OnInitialization += static () => MotionDispatcher.Update(PlayerLoopTiming.Initialization);
-            OnEarlyUpdate += static () => MotionDispatcher.Update(PlayerLoopTiming.EarlyUpdate);
-            OnFixedUpdate += static () => MotionDispatcher.Update(PlayerLoopTiming.FixedUpdate);
-            OnPreUpdate += static () => MotionDispatcher.Update(PlayerLoopTiming.PreUpdate);
-            OnUpdate += static () => MotionDispatcher.Update(PlayerLoopTiming.Update);
-            OnPreLateUpdate += static () => MotionDispatcher.Update(PlayerLoopTiming.PreLateUpdate);
-            OnPostLateUpdate += static () => MotionDispatcher.Update(PlayerLoopTiming.PostLateUpdate);
-            OnTimeUpdate += static () => MotionDispatcher.Update(PlayerLoopTiming.TimeUpdate);
+            OnInitialization += static () => DamperDispatcher.Update(PlayerLoopTiming.Initialization);
+            OnEarlyUpdate += static () => DamperDispatcher.Update(PlayerLoopTiming.EarlyUpdate);
+            OnFixedUpdate += static () => DamperDispatcher.Update(PlayerLoopTiming.FixedUpdate);
+            OnPreUpdate += static () => DamperDispatcher.Update(PlayerLoopTiming.PreUpdate);
+            OnUpdate += static () => DamperDispatcher.Update(PlayerLoopTiming.Update);
+            OnPreLateUpdate += static () => DamperDispatcher.Update(PlayerLoopTiming.PreLateUpdate);
+            OnPostLateUpdate += static () => DamperDispatcher.Update(PlayerLoopTiming.PostLateUpdate);
+            OnTimeUpdate += static () => DamperDispatcher.Update(PlayerLoopTiming.TimeUpdate);
 
             var playerLoop = PlayerLoop.GetCurrentPlayerLoop();
             Initialize(ref playerLoop);

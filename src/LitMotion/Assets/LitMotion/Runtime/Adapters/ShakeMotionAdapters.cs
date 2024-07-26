@@ -1,19 +1,19 @@
 using Unity.Jobs;
 using UnityEngine;
-using LitMotion;
-using LitMotion.Adapters;
+using LitDamper;
+using LitDamper.Adapters;
 
-[assembly: RegisterGenericJobType(typeof(MotionUpdateJob<float, ShakeOptions, FloatShakeMotionAdapter>))]
-[assembly: RegisterGenericJobType(typeof(MotionUpdateJob<Vector2, ShakeOptions, Vector2ShakeMotionAdapter>))]
-[assembly: RegisterGenericJobType(typeof(MotionUpdateJob<Vector3, ShakeOptions, Vector3ShakeMotionAdapter>))]
+[assembly: RegisterGenericJobType(typeof(DamperUpdateJob<float, ShakeOptions, FloatShakeMotionAdapter>))]
+[assembly: RegisterGenericJobType(typeof(DamperUpdateJob<Vector2, ShakeOptions, Vector2ShakeMotionAdapter>))]
+[assembly: RegisterGenericJobType(typeof(DamperUpdateJob<Vector3, ShakeOptions, Vector3ShakeMotionAdapter>))]
 
-namespace LitMotion.Adapters
+namespace LitDamper.Adapters
 {
     // Note: Shake motion uses startValue as offset and endValue as vibration strength.
 
-    public readonly struct FloatShakeMotionAdapter : IMotionAdapter<float, ShakeOptions>
+    public readonly struct FloatShakeMotionAdapter : IDamperAdapter<float, ShakeOptions>
     {
-        public float Evaluate(ref float startValue, ref float endValue, ref ShakeOptions options, in MotionEvaluationContext context)
+        public float Evaluate(ref float startValue, ref float endValue, ref ShakeOptions options, in DamperEvaluationContext context)
         {
             VibrationHelper.EvaluateStrength(endValue, options.Frequency, options.DampingRatio, context.Progress, out var s);
             float multipliar;
@@ -29,9 +29,9 @@ namespace LitMotion.Adapters
         }
     }
 
-    public readonly struct Vector2ShakeMotionAdapter : IMotionAdapter<Vector2, ShakeOptions>
+    public readonly struct Vector2ShakeMotionAdapter : IDamperAdapter<Vector2, ShakeOptions>
     {
-        public Vector2 Evaluate(ref Vector2 startValue, ref Vector2 endValue, ref ShakeOptions options, in MotionEvaluationContext context)
+        public Vector2 Evaluate(ref Vector2 startValue, ref Vector2 endValue, ref ShakeOptions options, in DamperEvaluationContext context)
         {
             VibrationHelper.EvaluateStrength(endValue, options.Frequency, options.DampingRatio, context.Progress, out var s);
             Vector2 multipliar;
@@ -47,9 +47,9 @@ namespace LitMotion.Adapters
         }
     }
 
-    public readonly struct Vector3ShakeMotionAdapter : IMotionAdapter<Vector3, ShakeOptions>
+    public readonly struct Vector3ShakeMotionAdapter : IDamperAdapter<Vector3, ShakeOptions>
     {
-        public Vector3 Evaluate(ref Vector3 startValue, ref Vector3 endValue, ref ShakeOptions options, in MotionEvaluationContext context)
+        public Vector3 Evaluate(ref Vector3 startValue, ref Vector3 endValue, ref ShakeOptions options, in DamperEvaluationContext context)
         {
             VibrationHelper.EvaluateStrength(endValue, options.Frequency, options.DampingRatio, context.Progress, out var s);
             Vector3 multipliar;

@@ -2,7 +2,7 @@
 using System.Threading;
 using UnityEngine;
 
-namespace LitMotion
+namespace LitDamper
 {
     // TODO: use object pool
 
@@ -44,7 +44,7 @@ namespace LitMotion
 
         AwaitableMotionConfiguredSource() : base() { }
 
-        public static AwaitableMotionConfiguredSource Create(MotionHandle motionHandle, CancelBehaviour cancelBehaviour, CancellationToken cancellationToken)
+        public static AwaitableMotionConfiguredSource Create(DamperHandle motionHandle, CancelBehaviour cancelBehaviour, CancellationToken cancellationToken)
         {
             if (cancellationToken.IsCancellationRequested)
             {

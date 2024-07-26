@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using Cysharp.Text;
 #endif
 
-namespace LitMotion.Extensions
+namespace LitDamper.Extensions
 {
     /// <summary>
     /// Provides binding extension methods for UIElements.
@@ -23,9 +23,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleLeft<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleLeft<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -42,9 +42,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleRight<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleRight<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -61,9 +61,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleTop<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleTop<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -80,9 +80,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleBottom<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleBottom<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -99,9 +99,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleWidth<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleWidth<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -118,9 +118,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleHeight<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleHeight<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -137,9 +137,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleColor<TOptions, TAdapter>(this MotionBuilder<Color, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Color, TOptions>
+        public static DamperHandle BindToStyleColor<TOptions, TAdapter>(this DamperBuilder<Color, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Color, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -156,9 +156,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleColorR<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleColorR<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -177,9 +177,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleColorG<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleColorG<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -198,9 +198,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleColorB<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleColorB<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -219,9 +219,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleColorA<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleColorA<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -240,9 +240,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleBackgroundColor<TOptions, TAdapter>(this MotionBuilder<Color, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Color, TOptions>
+        public static DamperHandle BindToStyleBackgroundColor<TOptions, TAdapter>(this DamperBuilder<Color, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Color, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -259,9 +259,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleBackgroundColorR<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleBackgroundColorR<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -280,9 +280,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleBackgroundColorG<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleBackgroundColorG<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -301,9 +301,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleBackgroundColorB<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleBackgroundColorB<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -322,9 +322,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleBackgroundColorA<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleBackgroundColorA<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -343,9 +343,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleOpacity<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleOpacity<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -362,9 +362,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleFontSize<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleFontSize<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -381,9 +381,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleWordSpacing<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleWordSpacing<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -400,9 +400,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleTranslate<TOptions, TAdapter>(this MotionBuilder<Vector3, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector3, TOptions>
+        public static DamperHandle BindToStyleTranslate<TOptions, TAdapter>(this DamperBuilder<Vector3, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector3, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -419,9 +419,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleTranslate<TOptions, TAdapter>(this MotionBuilder<Vector2, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector2, TOptions>
+        public static DamperHandle BindToStyleTranslate<TOptions, TAdapter>(this DamperBuilder<Vector2, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector2, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -438,9 +438,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleRotate<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement, AngleUnit angleUnit = AngleUnit.Degree)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToStyleRotate<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, VisualElement visualElement, AngleUnit angleUnit = AngleUnit.Degree)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, (x, target) =>
@@ -457,9 +457,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleScale<TOptions, TAdapter>(this MotionBuilder<Vector3, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector3, TOptions>
+        public static DamperHandle BindToStyleScale<TOptions, TAdapter>(this DamperBuilder<Vector3, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector3, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -476,9 +476,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleTransformOrigin<TOptions, TAdapter>(this MotionBuilder<Vector3, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector3, TOptions>
+        public static DamperHandle BindToStyleTransformOrigin<TOptions, TAdapter>(this DamperBuilder<Vector3, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector3, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -495,9 +495,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToStyleTransformOrigin<TOptions, TAdapter>(this MotionBuilder<Vector2, TOptions, TAdapter> builder, VisualElement visualElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector2, TOptions>
+        public static DamperHandle BindToStyleTransformOrigin<TOptions, TAdapter>(this DamperBuilder<Vector2, TOptions, TAdapter> builder, VisualElement visualElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector2, TOptions>
         {
             Error.IsNull(visualElement);
             return builder.BindWithState(visualElement, static (x, target) =>
@@ -518,9 +518,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToProgressBar<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, AbstractProgressBar progressBar)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToProgressBar<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, AbstractProgressBar progressBar)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(progressBar);
             return builder.BindWithState(progressBar, static (x, target) =>
@@ -541,9 +541,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<FixedString32Bytes, TOptions, TAdapter> builder, TextElement textElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<FixedString32Bytes, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<FixedString32Bytes, TOptions, TAdapter> builder, TextElement textElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<FixedString32Bytes, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, static (x, target) =>
@@ -560,9 +560,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<FixedString64Bytes, TOptions, TAdapter> builder, TextElement textElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<FixedString64Bytes, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<FixedString64Bytes, TOptions, TAdapter> builder, TextElement textElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<FixedString64Bytes, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, static (x, target) =>
@@ -579,9 +579,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<FixedString128Bytes, TOptions, TAdapter> builder, TextElement textElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<FixedString128Bytes, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<FixedString128Bytes, TOptions, TAdapter> builder, TextElement textElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<FixedString128Bytes, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, static (x, target) =>
@@ -598,9 +598,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<FixedString512Bytes, TOptions, TAdapter> builder, TextElement textElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<FixedString512Bytes, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<FixedString512Bytes, TOptions, TAdapter> builder, TextElement textElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<FixedString512Bytes, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, static (x, target) =>
@@ -617,9 +617,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<FixedString4096Bytes, TOptions, TAdapter> builder, TextElement textElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<FixedString4096Bytes, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<FixedString4096Bytes, TOptions, TAdapter> builder, TextElement textElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<FixedString4096Bytes, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, static (x, target) =>
@@ -636,9 +636,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<int, TOptions, TAdapter> builder, TextElement textElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<int, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<int, TOptions, TAdapter> builder, TextElement textElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<int, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, static (x, target) =>
@@ -656,9 +656,9 @@ namespace LitMotion.Extensions
         /// <param name="transform"></param>
         /// <param name="format">Format string</param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<int, TOptions, TAdapter> builder, TextElement textElement, string format)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<int, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<int, TOptions, TAdapter> builder, TextElement textElement, string format)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<int, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, format, static (x, target, f) =>
@@ -679,9 +679,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<long, TOptions, TAdapter> builder, TextElement textElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<long, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<long, TOptions, TAdapter> builder, TextElement textElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<long, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, static (x, target) =>
@@ -699,9 +699,9 @@ namespace LitMotion.Extensions
         /// <param name="transform"></param>
         /// <param name="format">Format string</param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<long, TOptions, TAdapter> builder, TextElement textElement, string format)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<long, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<long, TOptions, TAdapter> builder, TextElement textElement, string format)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<long, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, format, static (x, target, format) =>
@@ -722,9 +722,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, TextElement textElement)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, TextElement textElement)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, static (x, target) =>
@@ -742,9 +742,9 @@ namespace LitMotion.Extensions
         /// <param name="transform"></param>
         /// <param name="format">Format string</param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToText<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, TextElement textElement, string format)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToText<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, TextElement textElement, string format)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(textElement);
             return builder.BindWithState(textElement, format, static (x, target, format) =>

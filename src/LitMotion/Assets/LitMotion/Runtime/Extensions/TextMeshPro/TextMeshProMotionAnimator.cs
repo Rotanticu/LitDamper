@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using TMPro;
-using LitMotion.Collections;
+using LitDamper.Collections;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace LitMotion.Extensions
+namespace LitDamper.Extensions
 {
     // TODO: optimization
 
@@ -175,7 +175,7 @@ namespace LitMotion.Extensions
 
         TMP_Text target;
         internal CharInfo[] charInfoArray;
-        internal FastListCore<MotionHandle> motionHandleList;
+        internal FastListCore<DamperHandle> motionHandleList;
 
         TextMeshProMotionAnimator nextNode;
 

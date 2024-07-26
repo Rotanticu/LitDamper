@@ -5,7 +5,7 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace LitMotion.Collections
+namespace LitDamper.Collections
 {
     internal readonly struct KeyframeComparer : IComparer<Keyframe>
     {

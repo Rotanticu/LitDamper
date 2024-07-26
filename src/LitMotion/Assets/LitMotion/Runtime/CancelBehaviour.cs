@@ -1,4 +1,4 @@
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// Specifies the behavior when await is canceled.

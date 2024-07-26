@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace LitMotion
+namespace LitDamper
 {
     internal abstract class MotionConfiguredSourceBase
     {
@@ -14,7 +14,7 @@ namespace LitMotion
         readonly Action onCancelCallbackDelegate;
         readonly Action onCompleteCallbackDelegate;
 
-        MotionHandle motionHandle;
+        DamperHandle motionHandle;
         CancelBehaviour cancelBehaviour;
         CancellationToken cancellationToken;
         CancellationTokenRegistration cancellationRegistration;
@@ -62,7 +62,7 @@ namespace LitMotion
             }
         }
 
-        protected static void OnCanceledTokenReceived(MotionHandle motionHandle, CancelBehaviour cancelBehaviour)
+        protected static void OnCanceledTokenReceived(DamperHandle motionHandle, CancelBehaviour cancelBehaviour)
         {
             switch (cancelBehaviour)
             {
@@ -77,7 +77,7 @@ namespace LitMotion
             }
         }
 
-        protected void Initialize(MotionHandle motionHandle, CancelBehaviour cancelBehaviour, CancellationToken cancellationToken)
+        protected void Initialize(DamperHandle motionHandle, CancelBehaviour cancelBehaviour, CancellationToken cancellationToken)
         {
             this.motionHandle = motionHandle;
             this.cancelBehaviour = cancelBehaviour;

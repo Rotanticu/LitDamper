@@ -1,4 +1,4 @@
-namespace LitMotion.Collections
+namespace LitDamper.Collections
 {
     /// <summary>
     /// An object pool node consisting of a linked list

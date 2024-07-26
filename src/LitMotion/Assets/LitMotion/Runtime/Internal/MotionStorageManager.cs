@@ -1,8 +1,8 @@
 using System;
 using System.Runtime.CompilerServices;
-using LitMotion.Collections;
+using LitDamper.Collections;
 
-namespace LitMotion
+namespace LitDamper
 {
     internal static class MotionStorageManager
     {
@@ -10,47 +10,47 @@ namespace LitMotion
 
         public static int CurrentStorageId { get; private set; }
 
-        public static void AddStorage<TValue, TOptions, TAdapter>(MotionStorage<TValue, TOptions, TAdapter> storage)
+        public static void AddStorage<TValue, TOptions, TAdapter>(DamperStorage<TValue, TOptions, TAdapter> storage)
             where TValue : unmanaged
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<TValue, TOptions>
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<TValue, TOptions>
         {
             storageList.Add(storage);
             CurrentStorageId++;
         }
 
-        public static void CompleteMotion(MotionHandle handle)
+        public static void CompleteMotion(DamperHandle handle)
         {
             CheckStorageId(handle);
             storageList[handle.StorageId].Complete(handle);
         }
 
-        public static void CancelMotion(MotionHandle handle)
+        public static void CancelMotion(DamperHandle handle)
         {
             CheckStorageId(handle);
             storageList[handle.StorageId].Cancel(handle);
         }
 
-        public static bool IsActive(MotionHandle handle)
+        public static bool IsActive(DamperHandle handle)
         {
             if (handle.StorageId < 0 || handle.StorageId >= CurrentStorageId) return false;
             return storageList[handle.StorageId].IsActive(handle);
         }
 
-        public static ref MotionDataCore GetMotionDataRef(MotionHandle handle)
+        public static ref DamperDataCore GetMotionDataRef(DamperHandle handle)
         {
             CheckStorageId(handle);
             return ref storageList[handle.StorageId].GetDataRef(handle);
         }
 
-        public static ref MotionCallbackData GetMotionCallbackDataRef(MotionHandle handle)
+        public static ref DamperCallbackData GetMotionCallbackDataRef(DamperHandle handle)
         {
             CheckStorageId(handle);
             return ref storageList[handle.StorageId].GetCallbackDataRef(handle);
         }
 
         // For MotionTracker
-        public static (Type ValueType, Type OptionsType, Type AdapterType) GetMotionType(MotionHandle handle)
+        public static (Type ValueType, Type OptionsType, Type AdapterType) GetMotionType(DamperHandle handle)
         {
             CheckStorageId(handle);
             var storageType = storageList[handle.StorageId].GetType();
@@ -61,7 +61,7 @@ namespace LitMotion
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static void CheckStorageId(in MotionHandle handle)
+        static void CheckStorageId(in DamperHandle handle)
         {
             if (handle.StorageId < 0 || handle.StorageId >= CurrentStorageId)
                 throw new ArgumentException("Invalid storage id.");

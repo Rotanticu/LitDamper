@@ -6,7 +6,7 @@ using System.Security;
 using System.Text;
 using UnityEngine;
 
-namespace LitMotion.Editor
+namespace LitDamper.Editor
 {
     internal static class StackTraceHelper
     {

@@ -1,11 +1,11 @@
 using System;
 
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// Options for punch motion.
     /// </summary>
-    public struct PunchOptions : IEquatable<PunchOptions>, IMotionOptions
+    public struct PunchOptions : IEquatable<PunchOptions>, IDamperOptions
     {
         public int Frequency;
         public float DampingRatio;

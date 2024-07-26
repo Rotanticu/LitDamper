@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace LitMotion.Collections
+namespace LitDamper.Collections
 {
     /// <summary>
     /// Thread-safe linked list object pool

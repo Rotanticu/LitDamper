@@ -1,11 +1,11 @@
 using System;
 
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// Options for integer type motion.
     /// </summary>
-    public struct IntegerOptions : IMotionOptions, IEquatable<IntegerOptions>
+    public struct IntegerOptions : IDamperOptions, IEquatable<IntegerOptions>
     {
         public RoundingMode RoundingMode;
 

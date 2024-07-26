@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
-namespace LitMotion.Editor
+namespace LitDamper.Editor
 {
     /// <summary>
     /// Editor window that displays a list of motions being tracked.
@@ -31,8 +31,8 @@ namespace LitMotion.Editor
             instance = this;
             splitterState = SplitterGUILayout.CreateSplitterState(new float[] { 75f, 25f }, new int[] { 32, 32 }, null);
             treeView = new MotionTrackerTreeView();
-            MotionTracker.EnableTracking = EditorPrefs.GetBool(EnableTrackingPrefsKey, false);
-            MotionTracker.EnableStackTrace = EditorPrefs.GetBool(EnableStackTracePrefsKey, false);
+            DamperTracker.EnableTracking = EditorPrefs.GetBool(EnableTrackingPrefsKey, false);
+            DamperTracker.EnableStackTrace = EditorPrefs.GetBool(EnableStackTracePrefsKey, false);
         }
 
         void OnGUI()
@@ -53,23 +53,23 @@ namespace LitMotion.Editor
             EditorGUILayout.BeginVertical(EmptyLayoutOption);
             EditorGUILayout.BeginHorizontal(EditorStyles.toolbar, EmptyLayoutOption);
 
-            if (GUILayout.Toggle(MotionTracker.EnableTracking, EnableTrackingHeadContent, EditorStyles.toolbarButton, EmptyLayoutOption) != MotionTracker.EnableTracking)
+            if (GUILayout.Toggle(DamperTracker.EnableTracking, EnableTrackingHeadContent, EditorStyles.toolbarButton, EmptyLayoutOption) != DamperTracker.EnableTracking)
             {
-                MotionTracker.EnableTracking = !MotionTracker.EnableTracking;
-                EditorPrefs.SetBool(EnableTrackingPrefsKey, MotionTracker.EnableTracking);
+                DamperTracker.EnableTracking = !DamperTracker.EnableTracking;
+                EditorPrefs.SetBool(EnableTrackingPrefsKey, DamperTracker.EnableTracking);
             }
 
-            if (GUILayout.Toggle(MotionTracker.EnableStackTrace, EnableStackTraceHeadContent, EditorStyles.toolbarButton, EmptyLayoutOption) != MotionTracker.EnableStackTrace)
+            if (GUILayout.Toggle(DamperTracker.EnableStackTrace, EnableStackTraceHeadContent, EditorStyles.toolbarButton, EmptyLayoutOption) != DamperTracker.EnableStackTrace)
             {
-                MotionTracker.EnableStackTrace = !MotionTracker.EnableStackTrace;
-                EditorPrefs.SetBool(EnableStackTracePrefsKey, MotionTracker.EnableStackTrace);
+                DamperTracker.EnableStackTrace = !DamperTracker.EnableStackTrace;
+                EditorPrefs.SetBool(EnableStackTracePrefsKey, DamperTracker.EnableStackTrace);
             }
 
             GUILayout.FlexibleSpace();
 
             if (GUILayout.Button(ClearHeadContent, EditorStyles.toolbarButton, EmptyLayoutOption))
             {
-                MotionTracker.Clear();
+                DamperTracker.Clear();
                 treeView.ReloadAndSort();
                 Repaint();
             }

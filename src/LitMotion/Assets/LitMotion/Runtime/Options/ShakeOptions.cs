@@ -1,11 +1,11 @@
 using System;
 
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// Options for shake motion.
     /// </summary>
-    public struct ShakeOptions : IEquatable<ShakeOptions>, IMotionOptions
+    public struct ShakeOptions : IEquatable<ShakeOptions>, IDamperOptions
     {
         public int Frequency;
         public float DampingRatio;

@@ -1,19 +1,19 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using LitMotion.Collections;
+using LitDamper.Collections;
 
-namespace LitMotion
+namespace LitDamper
 {
     [DisallowMultipleComponent]
     [AddComponentMenu("")]
     internal sealed class MotionHandleLinker : MonoBehaviour
     {
-        FastListCore<MotionHandle> cancelOnDestroyList;
-        FastListCore<MotionHandle> cancelOnDisableList;
-        FastListCore<MotionHandle> completeOnDisableList;
+        FastListCore<DamperHandle> cancelOnDestroyList;
+        FastListCore<DamperHandle> cancelOnDisableList;
+        FastListCore<DamperHandle> completeOnDisableList;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Register(MotionHandle handle, LinkBehaviour linkBehaviour)
+        public void Register(DamperHandle handle, LinkBehaviour linkBehaviour)
         {
             switch (linkBehaviour)
             {

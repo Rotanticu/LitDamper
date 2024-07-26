@@ -1,9 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks.Sources;
-using LitMotion.Collections;
+using LitDamper.Collections;
 
-namespace LitMotion
+namespace LitDamper
 {
     internal sealed class ValueTaskMotionConfiguredSource : MotionConfiguredSourceBase, IValueTaskSource, ILinkedPoolNode<ValueTaskMotionConfiguredSource>
     {
@@ -31,7 +31,7 @@ namespace LitMotion
 
         ValueTaskMotionConfiguredSource() : base() { }
 
-        public static IValueTaskSource Create(MotionHandle motionHandle, CancelBehaviour cancelBehaviour, CancellationToken cancellationToken, out short token)
+        public static IValueTaskSource Create(DamperHandle motionHandle, CancelBehaviour cancelBehaviour, CancellationToken cancellationToken, out short token)
         {
             if (cancellationToken.IsCancellationRequested)
             {

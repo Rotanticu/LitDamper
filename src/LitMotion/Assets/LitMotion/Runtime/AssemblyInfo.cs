@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("LitMotion.Extensions")]
-[assembly: InternalsVisibleTo("LitMotion.Editor")]
-[assembly: InternalsVisibleTo("LitMotion.Tests.Runtime")]
+[assembly: InternalsVisibleTo("LitDamper.Extensions")]
+[assembly: InternalsVisibleTo("LitDamper.Editor")]
+[assembly: InternalsVisibleTo("LitDamper.Tests.Runtime")]

@@ -1,0 +1,18 @@
+{
+    "name": "LitDamper.Editor",
+    "rootNamespace": "LitDamper.Editor",
+    "references": [
+        "GUID:1a978488ab2d84444b1780b0c84f0bde"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

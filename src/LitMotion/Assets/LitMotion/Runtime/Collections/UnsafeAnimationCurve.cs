@@ -5,7 +5,7 @@ using UnityEngine;
 
 // TODO: avoid animationCurve.keys allocation
 
-namespace LitMotion.Collections
+namespace LitDamper.Collections
 {
     public unsafe struct UnsafeAnimationCurve : IDisposable
     {

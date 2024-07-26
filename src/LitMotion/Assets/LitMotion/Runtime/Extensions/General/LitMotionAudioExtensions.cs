@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace LitMotion.Extensions
+namespace LitDamper.Extensions
 {
     /// <summary>
     /// Provides binding extension methods for AudioSource and AudioMixer.
@@ -17,9 +17,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToVolume<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, AudioSource audioSource)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToVolume<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, AudioSource audioSource)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(audioSource);
             return builder.BindWithState(audioSource, static (x, target) =>
@@ -36,9 +36,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToPitch<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, AudioSource audioSource)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToPitch<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, AudioSource audioSource)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(audioSource);
             return builder.BindWithState(audioSource, static (x, target) =>
@@ -55,9 +55,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAudioMixerFloat<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, AudioMixer audioMixer, string name)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToAudioMixerFloat<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, AudioMixer audioMixer, string name)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(audioMixer);
             return builder.BindWithState(audioMixer, name, static (x, target, n) =>

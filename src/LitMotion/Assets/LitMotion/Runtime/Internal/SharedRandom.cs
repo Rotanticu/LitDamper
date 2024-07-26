@@ -1,7 +1,7 @@
 using Unity.Burst;
 using Unity.Mathematics;
 
-namespace LitMotion
+namespace LitDamper
 {
     static class SharedRandom
     {

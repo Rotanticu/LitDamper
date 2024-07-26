@@ -1,7 +1,7 @@
 using Unity.Burst;
 using static Unity.Mathematics.math;
 
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// Utility class that provides calculation of easing functions.

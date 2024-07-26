@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LitMotion.Extensions
+namespace LitDamper.Extensions
 {
     /// <summary>
     /// Provides binding extension methods for Material.
@@ -15,9 +15,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToMaterialFloat<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, Material material, string name)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToMaterialFloat<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, Material material, string name)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(material);
             return builder.BindWithState(material, name, static (x, m, n) =>
@@ -34,9 +34,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToMaterialFloat<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, Material material, int nameID)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToMaterialFloat<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, Material material, int nameID)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(material);
             return builder.BindWithState(material, (x, m) =>
@@ -53,9 +53,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToMaterialInt<TOptions, TAdapter>(this MotionBuilder<int, TOptions, TAdapter> builder, Material material, string name)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<int, TOptions>
+        public static DamperHandle BindToMaterialInt<TOptions, TAdapter>(this DamperBuilder<int, TOptions, TAdapter> builder, Material material, string name)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<int, TOptions>
         {
             Error.IsNull(material);
             return builder.BindWithState(material, name, static (x, m, n) =>
@@ -72,9 +72,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToMaterialInt<TOptions, TAdapter>(this MotionBuilder<int, TOptions, TAdapter> builder, Material material, int nameID)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<int, TOptions>
+        public static DamperHandle BindToMaterialInt<TOptions, TAdapter>(this DamperBuilder<int, TOptions, TAdapter> builder, Material material, int nameID)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<int, TOptions>
         {
             Error.IsNull(material);
             return builder.BindWithState(material, (x, m) =>
@@ -91,9 +91,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToMaterialColor<TOptions, TAdapter>(this MotionBuilder<Color, TOptions, TAdapter> builder, Material material, string name)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Color, TOptions>
+        public static DamperHandle BindToMaterialColor<TOptions, TAdapter>(this DamperBuilder<Color, TOptions, TAdapter> builder, Material material, string name)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Color, TOptions>
         {
             Error.IsNull(material);
             return builder.BindWithState(material, name, static (x, m, n) =>
@@ -110,9 +110,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToMaterialColor<TOptions, TAdapter>(this MotionBuilder<Color, TOptions, TAdapter> builder, Material material, int nameID)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Color, TOptions>
+        public static DamperHandle BindToMaterialColor<TOptions, TAdapter>(this DamperBuilder<Color, TOptions, TAdapter> builder, Material material, int nameID)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Color, TOptions>
         {
             Error.IsNull(material);
             return builder.BindWithState(material, (x, m) =>

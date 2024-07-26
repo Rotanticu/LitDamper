@@ -2,7 +2,7 @@ using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace LitMotion
+namespace LitDamper
 {
     [BurstCompile]
     internal static class VibrationHelper

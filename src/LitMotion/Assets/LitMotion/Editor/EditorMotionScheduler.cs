@@ -1,4 +1,4 @@
-namespace LitMotion.Editor
+namespace LitDamper.Editor
 {
     /// <summary>
     /// Schedulers available in Editor.
@@ -8,6 +8,6 @@ namespace LitMotion.Editor
         /// <summary>
         /// Scheduler that updates motion at EditorApplication.update.
         /// </summary>
-        public static readonly IMotionScheduler Update = new EditorUpdateMotionScheduler();
+        public static readonly IDamperScheduler Update = new EditorUpdateMotionScheduler();
     }
 }

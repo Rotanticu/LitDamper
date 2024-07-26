@@ -1,34 +1,34 @@
 using Unity.Jobs;
 using Unity.Mathematics;
-using LitMotion;
-using LitMotion.Adapters;
+using LitDamper;
+using LitDamper.Adapters;
 
-[assembly: RegisterGenericJobType(typeof(MotionUpdateJob<float, NoOptions, FloatMotionAdapter>))]
-[assembly: RegisterGenericJobType(typeof(MotionUpdateJob<double, NoOptions, DoubleMotionAdapter>))]
-[assembly: RegisterGenericJobType(typeof(MotionUpdateJob<int, IntegerOptions, IntMotionAdapter>))]
-[assembly: RegisterGenericJobType(typeof(MotionUpdateJob<long, IntegerOptions, LongMotionAdapter>))]
+[assembly: RegisterGenericJobType(typeof(DamperUpdateJob<float, NoOptions, FloatMotionAdapter>))]
+[assembly: RegisterGenericJobType(typeof(DamperUpdateJob<double, NoOptions, DoubleMotionAdapter>))]
+[assembly: RegisterGenericJobType(typeof(DamperUpdateJob<int, IntegerOptions, IntMotionAdapter>))]
+[assembly: RegisterGenericJobType(typeof(DamperUpdateJob<long, IntegerOptions, LongMotionAdapter>))]
 
-namespace LitMotion.Adapters
+namespace LitDamper.Adapters
 {
-    public readonly struct FloatMotionAdapter : IMotionAdapter<float, NoOptions>
+    public readonly struct FloatMotionAdapter : IDamperAdapter<float, NoOptions>
     {
-        public float Evaluate(ref float startValue, ref float endValue, ref NoOptions options, in MotionEvaluationContext context)
+        public float Evaluate(ref float startValue, ref float endValue, ref NoOptions options, in DamperEvaluationContext context)
         {
             return math.lerp(startValue, endValue, context.Progress);
         }
     }
 
-    public readonly struct DoubleMotionAdapter : IMotionAdapter<double, NoOptions>
+    public readonly struct DoubleMotionAdapter : IDamperAdapter<double, NoOptions>
     {
-        public double Evaluate(ref double startValue, ref double endValue, ref NoOptions options, in MotionEvaluationContext context)
+        public double Evaluate(ref double startValue, ref double endValue, ref NoOptions options, in DamperEvaluationContext context)
         {
             return math.lerp(startValue, endValue, context.Progress);
         }
     }
 
-    public readonly struct IntMotionAdapter : IMotionAdapter<int, IntegerOptions>
+    public readonly struct IntMotionAdapter : IDamperAdapter<int, IntegerOptions>
     {
-        public int Evaluate(ref int startValue, ref int endValue, ref IntegerOptions options, in MotionEvaluationContext context)
+        public int Evaluate(ref int startValue, ref int endValue, ref IntegerOptions options, in DamperEvaluationContext context)
         {
             var value = math.lerp(startValue, endValue, context.Progress);
 
@@ -42,9 +42,9 @@ namespace LitMotion.Adapters
             };
         }
     }
-    public readonly struct LongMotionAdapter : IMotionAdapter<long, IntegerOptions>
+    public readonly struct LongMotionAdapter : IDamperAdapter<long, IntegerOptions>
     {
-        public long Evaluate(ref long startValue, ref long endValue, ref IntegerOptions options, in MotionEvaluationContext context)
+        public long Evaluate(ref long startValue, ref long endValue, ref IntegerOptions options, in DamperEvaluationContext context)
         {
             var value = math.lerp((double)startValue, endValue, context.Progress);
 

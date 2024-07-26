@@ -2,7 +2,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 
-namespace LitMotion
+namespace LitDamper
 {
     [BurstCompile]
     internal static class RichTextParser

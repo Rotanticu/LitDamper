@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LitMotion.Extensions
+namespace LitDamper.Extensions
 {
     /// <summary>
     /// Provides binding extension methods for RectTransform.
@@ -15,9 +15,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchoredPosition<TOptions, TAdapter>(this MotionBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector2, TOptions>
+        public static DamperHandle BindToAnchoredPosition<TOptions, TAdapter>(this DamperBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector2, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -34,9 +34,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchoredPositionX<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToAnchoredPositionX<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -55,9 +55,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchoredPositionY<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToAnchoredPositionY<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -76,9 +76,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchoredPosition3D<TOptions, TAdapter>(this MotionBuilder<Vector3, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector3, TOptions>
+        public static DamperHandle BindToAnchoredPosition3D<TOptions, TAdapter>(this DamperBuilder<Vector3, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector3, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -95,9 +95,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchoredPosition3DX<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToAnchoredPosition3DX<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -116,9 +116,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchoredPosition3DY<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToAnchoredPosition3DY<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -137,9 +137,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchoredPosition3DZ<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToAnchoredPosition3DZ<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -158,9 +158,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchorMin<TOptions, TAdapter>(this MotionBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector2, TOptions>
+        public static DamperHandle BindToAnchorMin<TOptions, TAdapter>(this DamperBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector2, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -177,9 +177,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToAnchorMax<TOptions, TAdapter>(this MotionBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector2, TOptions>
+        public static DamperHandle BindToAnchorMax<TOptions, TAdapter>(this DamperBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector2, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -197,9 +197,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToSizeDelta<TOptions, TAdapter>(this MotionBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector2, TOptions>
+        public static DamperHandle BindToSizeDelta<TOptions, TAdapter>(this DamperBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector2, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -216,9 +216,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToSizeDeltaX<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToSizeDeltaX<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -237,9 +237,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToSizeDeltaY<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToSizeDeltaY<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -258,9 +258,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToPivot<TOptions, TAdapter>(this MotionBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<Vector2, TOptions>
+        public static DamperHandle BindToPivot<TOptions, TAdapter>(this DamperBuilder<Vector2, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<Vector2, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -277,9 +277,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToPivotX<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToPivotX<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>
@@ -298,9 +298,9 @@ namespace LitMotion.Extensions
         /// <param name="builder">This builder</param>
         /// <param name="transform"></param>
         /// <returns>Handle of the created motion data.</returns>
-        public static MotionHandle BindToPivotY<TOptions, TAdapter>(this MotionBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<float, TOptions>
+        public static DamperHandle BindToPivotY<TOptions, TAdapter>(this DamperBuilder<float, TOptions, TAdapter> builder, RectTransform rectTransform)
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<float, TOptions>
         {
             Error.IsNull(rectTransform);
             return builder.BindWithState(rectTransform, static (x, target) =>

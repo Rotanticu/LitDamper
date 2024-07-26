@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 
-namespace LitMotion.Editor
+namespace LitDamper.Editor
 {
     internal sealed class MotionTrackerViewItem : TreeViewItem
     {
@@ -107,7 +107,7 @@ namespace LitMotion.Editor
             BuildRows(rootItem);
         }
 
-        static string GetSchedulerName(IMotionScheduler scheduler, bool isCreatedOnEditor)
+        static string GetSchedulerName(IDamperScheduler scheduler, bool isCreatedOnEditor)
         {
             static string GetTimeKindName(MotionTimeKind motionTimeKind)
             {
@@ -146,7 +146,7 @@ namespace LitMotion.Editor
             var children = new List<TreeViewItem>();
 
             var id = 0;
-            foreach (var tracking in MotionTracker.Items)
+            foreach (var tracking in DamperTracker.Items)
             {
                 children.Add(new MotionTrackerViewItem(id)
                 {

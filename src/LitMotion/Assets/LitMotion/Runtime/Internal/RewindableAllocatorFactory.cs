@@ -6,7 +6,7 @@ using Unity.Collections;
 using UnityEditor;
 #endif
 
-namespace LitMotion
+namespace LitDamper
 {
     internal static class RewindableAllocatorFactory
     {

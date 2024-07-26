@@ -1,7 +1,7 @@
 using System;
 using Unity.Collections;
 
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// Type of characters used to fill in invisible strings.
@@ -37,7 +37,7 @@ namespace LitMotion
     /// <summary>
     /// Options for string type motion.
     /// </summary>
-    public struct StringOptions : IMotionOptions, IEquatable<StringOptions>
+    public struct StringOptions : IDamperOptions, IEquatable<StringOptions>
     {
         public ScrambleMode ScrambleMode;
         public bool RichTextEnabled;

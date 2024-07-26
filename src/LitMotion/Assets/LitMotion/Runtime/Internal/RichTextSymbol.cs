@@ -1,6 +1,6 @@
 using Unity.Collections;
 
-namespace LitMotion
+namespace LitDamper
 {
     internal enum RichTextSymbolType : byte
     {

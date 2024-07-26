@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// A class that manages multiple motion handles at once.
     /// </summary>
-    public sealed class CompositeMotionHandle : ICollection<MotionHandle>, IEnumerable<MotionHandle>
+    public sealed class CompositeMotionHandle : ICollection<DamperHandle>, IEnumerable<DamperHandle>
     {
         public CompositeMotionHandle()
         {
@@ -54,17 +54,17 @@ namespace LitMotion
         /// Add motion handle.
         /// </summary>
         /// <param name="handle">Motion handle</param>
-        public void Add(MotionHandle handle)
+        public void Add(DamperHandle handle)
         {
             handleList.Add(handle);
         }
 
-        public List<MotionHandle>.Enumerator GetEnumerator()
+        public List<DamperHandle>.Enumerator GetEnumerator()
         {
             return handleList.GetEnumerator();
         }
 
-        IEnumerator<MotionHandle> IEnumerable<MotionHandle>.GetEnumerator()
+        IEnumerator<DamperHandle> IEnumerable<DamperHandle>.GetEnumerator()
         {
             return handleList.GetEnumerator();
         }
@@ -79,17 +79,17 @@ namespace LitMotion
             handleList.Clear();
         }
 
-        public bool Contains(MotionHandle item)
+        public bool Contains(DamperHandle item)
         {
             return handleList.Contains(item);
         }
 
-        public void CopyTo(MotionHandle[] array, int arrayIndex)
+        public void CopyTo(DamperHandle[] array, int arrayIndex)
         {
             handleList.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(MotionHandle item)
+        public bool Remove(DamperHandle item)
         {
             return handleList.Remove(item);
         }
@@ -97,6 +97,6 @@ namespace LitMotion
         public int Count => handleList.Count;
         public bool IsReadOnly => false;
 
-        readonly List<MotionHandle> handleList;
+        readonly List<DamperHandle> handleList;
     }
 }

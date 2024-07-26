@@ -4,9 +4,9 @@ using UnityTime = UnityEngine.Time;
 using UnityEditor;
 #endif
 
-namespace LitMotion
+namespace LitDamper
 {
-    internal sealed class PlayerLoopMotionScheduler : IMotionScheduler
+    internal sealed class PlayerLoopMotionScheduler : IDamperScheduler
     {
         public readonly PlayerLoopTiming playerLoopTiming;
         public readonly MotionTimeKind timeKind;
@@ -42,16 +42,16 @@ namespace LitMotion
             }
         }
 
-        public MotionHandle Schedule<TValue, TOptions, TAdapter>(ref MotionData<TValue, TOptions> data, ref MotionCallbackData callbackData)
+        public DamperHandle Schedule<TValue, TOptions, TAdapter>(ref DamperData<TValue, TOptions> data, ref DamperCallbackData callbackData)
             where TValue : unmanaged
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<TValue, TOptions>
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<TValue, TOptions>
         {
             data.Core.TimeKind = timeKind;
 #if UNITY_EDITOR
             if (EditorApplication.isPlaying)
             {
-                return MotionDispatcher.Schedule<TValue, TOptions, TAdapter>(data, callbackData, playerLoopTiming);
+                return DamperDispatcher.Schedule<TValue, TOptions, TAdapter>(data, callbackData, playerLoopTiming);
             }
             else
             {

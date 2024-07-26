@@ -3,7 +3,7 @@ using Unity.Burst;
 using Unity.Mathematics;
 using Unity.Collections.LowLevel.Unsafe;
 
-namespace LitMotion
+namespace LitDamper
 {
     [BurstCompile]
     internal unsafe static partial class FixedStringHelper

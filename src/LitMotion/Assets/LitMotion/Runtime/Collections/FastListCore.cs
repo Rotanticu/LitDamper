@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace LitMotion.Collections
+namespace LitDamper.Collections
 {
     /// <summary>
     /// A list of minimal features. Note that it is NOT thread-safe and must NOT be marked readonly as it is a mutable struct.

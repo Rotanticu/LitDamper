@@ -1,4 +1,4 @@
-namespace LitMotion
+namespace LitDamper
 {
     /// <summary>
     /// Specifies the easing to apply to the animation.

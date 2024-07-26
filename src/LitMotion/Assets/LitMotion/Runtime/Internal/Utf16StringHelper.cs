@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace LitMotion
+namespace LitDamper
 {
     internal static class Utf16StringHelper
     {

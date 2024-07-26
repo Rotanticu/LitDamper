@@ -1,15 +1,15 @@
-namespace LitMotion
+namespace LitDamper
 {
-    internal sealed class ManualMotionScheduler : IMotionScheduler
+    internal sealed class ManualMotionScheduler : IDamperScheduler
     {
-        public double Time => ManualMotionDispatcher.Time;
+        public double Time => ManualDamperDispatcher.Time;
 
-        public MotionHandle Schedule<TValue, TOptions, TAdapter>(ref MotionData<TValue, TOptions> data, ref MotionCallbackData callbackData)
+        public DamperHandle Schedule<TValue, TOptions, TAdapter>(ref DamperData<TValue, TOptions> data, ref DamperCallbackData callbackData)
             where TValue : unmanaged
-            where TOptions : unmanaged, IMotionOptions
-            where TAdapter : unmanaged, IMotionAdapter<TValue, TOptions>
+            where TOptions : unmanaged, IDamperOptions
+            where TAdapter : unmanaged, IDamperAdapter<TValue, TOptions>
         {
-            return ManualMotionDispatcher.Schedule<TValue, TOptions, TAdapter>(data, callbackData);
+            return ManualDamperDispatcher.Schedule<TValue, TOptions, TAdapter>(data, callbackData);
         }
     }
 }

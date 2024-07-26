@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace LitMotion
+namespace LitDamper
 {
     internal static class ArrayHelper
     {

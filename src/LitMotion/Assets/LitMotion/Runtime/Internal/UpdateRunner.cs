@@ -4,7 +4,7 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.Jobs;
 using UnityEngine;
 
-namespace LitMotion
+namespace LitDamper
 {
     internal interface IUpdateRunner
     {
@@ -14,10 +14,10 @@ namespace LitMotion
 
     internal sealed class UpdateRunner<TValue, TOptions, TAdapter> : IUpdateRunner
         where TValue : unmanaged
-        where TOptions : unmanaged, IMotionOptions
-        where TAdapter : unmanaged, IMotionAdapter<TValue, TOptions>
+        where TOptions : unmanaged, IDamperOptions
+        where TAdapter : unmanaged, IDamperAdapter<TValue, TOptions>
     {
-        public UpdateRunner(MotionStorage<TValue, TOptions, TAdapter> storage, double time, double unscaledTime, double realtime)
+        public UpdateRunner(DamperStorage<TValue, TOptions, TAdapter> storage, double time, double unscaledTime, double realtime)
         {
             this.storage = storage;
             prevTime = time;
@@ -25,7 +25,7 @@ namespace LitMotion
             prevRealtime = realtime;
         }
 
-        readonly MotionStorage<TValue, TOptions, TAdapter> storage;
+        readonly DamperStorage<TValue, TOptions, TAdapter> storage;
 
         double prevTime;
         double prevUnscaledTime;
@@ -44,10 +44,10 @@ namespace LitMotion
             prevUnscaledTime = unscaledTime;
             prevRealtime = realtime;
 
-            fixed (MotionData<TValue, TOptions>* dataPtr = storage.dataArray)
+            fixed (DamperData<TValue, TOptions>* dataPtr = storage.dataArray)
             {
                 // update data
-                var job = new MotionUpdateJob<TValue, TOptions, TAdapter>()
+                var job = new DamperUpdateJob<TValue, TOptions, TAdapter>()
                 {
                     DataPtr = dataPtr,
                     DeltaTime = deltaTime,
@@ -65,7 +65,7 @@ namespace LitMotion
                 {
                     var status = (dataPtr + i)->Core.Status;
                     ref var callbackData = ref callbackSpan[i];
-                    if (status == MotionStatus.Playing || (status == MotionStatus.Delayed && !callbackData.SkipValuesDuringDelay))
+                    if (status == DamperStatus.Playing || (status == DamperStatus.Delayed && !callbackData.SkipValuesDuringDelay))
                     {
                         try
                         {
@@ -73,15 +73,15 @@ namespace LitMotion
                         }
                         catch (Exception ex)
                         {
-                            MotionDispatcher.GetUnhandledExceptionHandler()?.Invoke(ex);
+                            DamperDispatcher.GetUnhandledExceptionHandler()?.Invoke(ex);
                             if (callbackData.CancelOnError)
                             {
-                                (dataPtr + i)->Core.Status = MotionStatus.Canceled;
+                                (dataPtr + i)->Core.Status = DamperStatus.Canceled;
                                 callbackData.OnCancelAction?.Invoke();
                             }
                         }
                     }
-                    else if (status == MotionStatus.Completed)
+                    else if (status == DamperStatus.Completed)
                     {
                         try
                         {
@@ -89,10 +89,10 @@ namespace LitMotion
                         }
                         catch (Exception ex)
                         {
-                            MotionDispatcher.GetUnhandledExceptionHandler()?.Invoke(ex);
+                            DamperDispatcher.GetUnhandledExceptionHandler()?.Invoke(ex);
                             if (callbackData.CancelOnError)
                             {
-                                (dataPtr + i)->Core.Status = MotionStatus.Canceled;
+                                (dataPtr + i)->Core.Status = DamperStatus.Canceled;
                                 callbackData.OnCancelAction?.Invoke();
                                 continue;
                             }
@@ -104,7 +104,7 @@ namespace LitMotion
                         }
                         catch (Exception ex)
                         {
-                            MotionDispatcher.GetUnhandledExceptionHandler()?.Invoke(ex);
+                            DamperDispatcher.GetUnhandledExceptionHandler()?.Invoke(ex);
                         }
                     }
                 }

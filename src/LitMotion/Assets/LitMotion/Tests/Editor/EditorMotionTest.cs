@@ -1,17 +1,18 @@
 using UnityEngine;
-using LitMotion.Editor;
+using LitDamper.Editor;
 using System.Collections;
 using UnityEngine.TestTools;
 
-namespace LitMotion.Tests.Editor
+namespace LitDamper.Tests.Editor
 {
     public class EditorMotionTest
     {
+        public float currentValue = 0f;
         [UnityTest]
         public IEnumerator Test_1()
         {
             bool completed = false;
-            LMotion.Create(0f, 100f, 1f)
+            LDamper.CreateDamper(()=> currentValue, (value) => currentValue = value, () => 1f)
                 .WithOnComplete(() => completed = true)
                 .Bind(x => Debug.Log(x));
 
