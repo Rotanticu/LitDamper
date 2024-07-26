@@ -1,11 +1,11 @@
 {
-    "name": "com.annulusgames.lit-motion",
+    "name": "com.rotanticu.lit-damper",
     "version": "1.9.0",
-    "displayName": "LitMotion",
-    "description": "Lightning-fast and Zero Allocation Tween Library for Unity.",
+    "displayName": "LitDamper",
+    "description": "LitMotion But change tween into damper",
     "keywords": [
         "dots",
-        "tween"
+        "damper"
     ],
     "dependencies": {
         "com.unity.burst": "1.6.0",
@@ -13,6 +13,6 @@
         "com.unity.mathematics": "1.0.1"
     },
     "author": {
-        "name": "Annulus Games"
+        "name": "Annulus Games,Rotanticu"
     }
 }
