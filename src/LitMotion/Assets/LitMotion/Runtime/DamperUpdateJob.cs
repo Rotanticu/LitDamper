@@ -1,9 +1,12 @@
+using System;
 using Unity.Burst;
 using Unity.Burst.CompilerServices;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Jobs;
 using Unity.Mathematics;
+using static Codice.Client.BaseCommands.Import.Commit;
+using static Codice.CM.Common.Purge.PurgeReport;
 
 namespace LitDamper
 {
@@ -25,144 +28,66 @@ namespace LitDamper
         [ReadOnly] public double RealDeltaTime;
 
         [WriteOnly] public NativeList<int>.ParallelWriter CompletedIndexList;
-        [WriteOnly] public NativeArray<TValue> Output;
+        public NativeArray<double> Output;
 
         public void Execute([AssumeRange(0, int.MaxValue)] int index)
         {
-            //var ptr = DataPtr + index;
-            //var corePtr = (DamperDataCore*)ptr;
+            var ptr = DataPtr + index;
+            var corePtr = (DamperDataCore*)ptr;
 
-            //if (Hint.Likely(corePtr->Status is DamperStatus.Scheduled or DamperStatus.Delayed or DamperStatus.Playing))
-            //{
-            //    var deltaTime = corePtr->TimeKind switch
-            //    {
-            //        MotionTimeKind.Time => DeltaTime,
-            //        MotionTimeKind.UnscaledTime => UnscaledDeltaTime,
-            //        MotionTimeKind.Realtime => RealDeltaTime,
-            //        _ => default
-            //    };
+            if (Hint.Likely(corePtr->Status is DamperStatus.Scheduled or DamperStatus.Playing))
+            {
+                var deltaTime = corePtr->TimeKind switch
+                {
+                    MotionTimeKind.Time => DeltaTime,
+                    MotionTimeKind.UnscaledTime => UnscaledDeltaTime,
+                    MotionTimeKind.Realtime => RealDeltaTime,
+                    _ => default
+                } * corePtr->PlaybackSpeed;
 
-            //    corePtr->Time = math.max(corePtr->Time + deltaTime * corePtr->PlaybackSpeed, 0.0);
-            //    var motionTime = corePtr->Time;
+                corePtr->motionTime += deltaTime;
 
-            //    double t;
-            //    bool isCompleted;
-            //    bool isDelayed;
-            //    int completedLoops;
-            //    int clampedCompletedLoops;
+                double currentValue = corePtr->CurrentValue;
+                double targetValue = corePtr->TargetValue;
 
-            //    if (Hint.Unlikely(corePtr->Duration <= 0f))
-            //    {
-            //        if (corePtr->DelayType == DelayType.FirstLoop || corePtr->Delay == 0f)
-            //        {
-            //            var time = motionTime - corePtr->Delay;
-            //            isCompleted = corePtr->Loops >= 0 && time > 0f;
-            //            if (isCompleted)
-            //            {
-            //                t = 1f;
-            //                completedLoops = corePtr->Loops;
-            //            }
-            //            else
-            //            {
-            //                t = 0f;
-            //                completedLoops = time < 0f ? -1 : 0;
-            //            }
-            //            clampedCompletedLoops = corePtr->Loops < 0 ? math.max(0, completedLoops) : math.clamp(completedLoops, 0, corePtr->Loops);
-            //            isDelayed = time < 0;
-            //        }
-            //        else
-            //        {
-            //            completedLoops = (int)math.floor(motionTime / corePtr->Delay);
-            //            clampedCompletedLoops = corePtr->Loops < 0 ? math.max(0, completedLoops) : math.clamp(completedLoops, 0, corePtr->Loops);
-            //            isCompleted = corePtr->Loops >= 0 && clampedCompletedLoops > corePtr->Loops - 1;
-            //            isDelayed = !isCompleted;
-            //            t = isCompleted ? 1f : 0f;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (corePtr->DelayType == DelayType.FirstLoop)
-            //        {
-            //            var time = motionTime - corePtr->Delay;
-            //            completedLoops = (int)math.floor(time / corePtr->Duration);
-            //            clampedCompletedLoops = corePtr->Loops < 0 ? math.max(0, completedLoops) : math.clamp(completedLoops, 0, corePtr->Loops);
-            //            isCompleted = corePtr->Loops >= 0 && clampedCompletedLoops > corePtr->Loops - 1;
-            //            isDelayed = time < 0f;
+                currentValue = corePtr->springType switch
+                {
+                    SpringType.SimpleSpring => DamperUtility.SimpleSpringDamperImplicit(currentValue, ref corePtr->velocity, targetValue, corePtr->HalfTime, deltaTime),
+                    SpringType.TimedSpring => DamperUtility.TimedSpringDamperImplicit(currentValue, ref corePtr->velocity, ref corePtr->xi, targetValue, UnsafeUtility.As<TOptions, TimeDamperOptions>(ref ptr->Options).TargetTime, corePtr->HalfTime, deltaTime),
+                    SpringType.VelocitySpring => DamperUtility.VelocitySpringDamperImplicit(currentValue, ref corePtr->velocity, ref corePtr->xi, targetValue, UnsafeUtility.As<TOptions, VelocityDamperOptions>(ref ptr->Options).TargetVelocity, corePtr->HalfTime, deltaTime),
+                    SpringType.DoubleSpring => DamperUtility.DoubleSpringDamperImplicit(currentValue, ref corePtr->velocity, ref corePtr->xi, ref corePtr->vi, targetValue, corePtr->HalfTime, deltaTime),
+                    _ => throw new NotImplementedException(),
+                };
 
-            //            if (isCompleted)
-            //            {
-            //                t = 1f;
-            //            }
-            //            else
-            //            {
-            //                var currentLoopTime = time - corePtr->Duration * clampedCompletedLoops;
-            //                t = math.clamp(currentLoopTime / corePtr->Duration, 0f, 1f);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            var currentLoopTime = math.fmod(motionTime, corePtr->Duration + corePtr->Delay) - corePtr->Delay;
-            //            completedLoops = (int)math.floor(motionTime / (corePtr->Duration + corePtr->Delay));
-            //            clampedCompletedLoops = corePtr->Loops < 0 ? math.max(0, completedLoops) : math.clamp(completedLoops, 0, corePtr->Loops);
-            //            isCompleted = corePtr->Loops >= 0 && clampedCompletedLoops > corePtr->Loops - 1;
-            //            isDelayed = currentLoopTime < 0;
+                corePtr->CurrentValue = currentValue;
+                bool isCompleted = DamperUtility.Approximately(currentValue, targetValue);
 
-            //            if (isCompleted)
-            //            {
-            //                t = 1f;
-            //            }
-            //            else
-            //            {
-            //                t = math.clamp(currentLoopTime / corePtr->Duration, 0f, 1f);
-            //            }
-            //        }
-            //    }
+                if (isCompleted)
+                {
+                    corePtr->Status = DamperStatus.Completed;
+                }
+                else
+                {
+                    corePtr->Status = DamperStatus.Playing;
+                }
 
-            //    float progress;
-            //    switch (corePtr->LoopType)
-            //    {
-            //        default:
-            //        case LoopType.Restart:
-            //            progress = GetEasedValue(corePtr, (float)t);
-            //            break;
-            //        case LoopType.Yoyo:
-            //            progress = GetEasedValue(corePtr, (float)t);
-            //            if ((clampedCompletedLoops + (int)t) % 2 == 1) progress = 1f - progress;
-            //            break;
-            //        case LoopType.Incremental:
-            //            progress = GetEasedValue(corePtr, 1f) * clampedCompletedLoops + GetEasedValue(corePtr, (float)math.fmod(t, 1f));
-            //            break;
-            //    }
+                //var context = new DamperEvaluationContext()
+                //{
+                //    Progress = (float)progress,
+                //};
 
-            //    var totalDuration = corePtr->DelayType == DelayType.FirstLoop
-            //        ? corePtr->Delay + corePtr->Duration * corePtr->Loops
-            //        : (corePtr->Delay + corePtr->Duration) * corePtr->Loops;
-
-            //    if (corePtr->Loops > 0 && motionTime >= totalDuration)
-            //    {
-            //        corePtr->Status = DamperStatus.Completed;
-            //    }
-            //    else if (isDelayed)
-            //    {
-            //        corePtr->Status = DamperStatus.Delayed;
-            //    }
-            //    else
-            //    {
-            //        corePtr->Status = DamperStatus.Playing;
-            //    }
-
-            //    var context = new DamperEvaluationContext()
-            //    {
-            //        Progress = progress
-            //    };
-
-            //    Output[index] = default(TAdapter).Evaluate(ref ptr->StartValue, ref ptr->EndValue, ref ptr->Options, context);
-            //}
-            //else if (corePtr->Status is DamperStatus.Completed or DamperStatus.Canceled)
-            //{
-            //    CompletedIndexList.AddNoResize(index);
-            //    corePtr->Status = DamperStatus.Disposed;
-            //}
+                //Output[index] = default(TAdapter).Evaluate(ref DataPtr->CurrentValue, ref DataPtr->TargetValue, ref ptr->Options, context);
+                Output[index] = currentValue;
+            }
+            else if (corePtr->Status is DamperStatus.Completed)
+            {
+                corePtr->Status = DamperStatus.Delayed;
+            }
+            else if(corePtr->Status is DamperStatus.Canceled)
+            {
+                CompletedIndexList.AddNoResize(index);
+                corePtr->Status = DamperStatus.Disposed;
+            }
         }
 
         //static float GetEasedValue(DamperDataCore* data, float value)

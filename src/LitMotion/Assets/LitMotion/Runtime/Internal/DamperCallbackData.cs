@@ -54,11 +54,11 @@ namespace LitDamper
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetCurrentValueUnsafe<TValue>(in TValue value) where TValue : unmanaged
         {
-            UnsafeUtility.As<object, Action<TValue>>(ref GetCurrentValue)?.Invoke(value);
+            UnsafeUtility.As<object, Action<TValue>>(ref SetCurrentValue)?.Invoke(value);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TValue GetTargetValueUnsafe<TValue>(in TValue value) where TValue : unmanaged
+        public TValue GetTargetValueUnsafe<TValue>() where TValue : unmanaged
         {
             return (TValue)UnsafeUtility.As<object, Func<TValue>>(ref GetTargetValue)?.Invoke();
         }

@@ -156,6 +156,32 @@ namespace LitDamper
         }
 
         /// <summary>
+        /// Damper Spring Type
+        /// </summary>
+        /// <param name="springType">springType</param>
+        /// <returns>This builder to allow chaining multiple method calls.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public readonly DamperBuilder<TValue, TOptions, TAdapter> WithSpring(SpringType springType)
+        {
+            CheckBuffer();
+            buffer.Data.Core.springType = springType;
+            return this;
+        }
+
+        /// <summary>
+        /// Controll damper halfTime.
+        /// </summary>
+        /// <param name="halfTime">halfTime</param>
+        /// <returns>This builder to allow chaining multiple method calls.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public readonly DamperBuilder<TValue, TOptions, TAdapter> WithHalfTime(double halfTime)
+        {
+            CheckBuffer();
+            buffer.Data.Core.HalfTime = halfTime;
+            return this;
+        }
+
+        /// <summary>
         /// Create motion and play it without binding it to a specific object.
         /// </summary>
         /// <returns>Handle of the created motion data.</returns>
@@ -256,21 +282,7 @@ namespace LitDamper
         {
             if (buffer.BindOnSchedule && callbackData.UpdateAction != null)
             {
-                //todo
-                //callbackData.InvokeUnsafe(
-                //    default(TAdapter).Evaluate(
-                //        ref data.StartValue,
-                //        ref data.EndValue,
-                //        ref data.Options,
-                //        new()
-                //        {
-                //            Progress = data.Core.Ease switch
-                //            {
-                //                Ease.CustomAnimationCurve => data.Core.AnimationCurve.Evaluate(0f),
-                //                _ => EaseUtility.Evaluate(0f, data.Core.Ease)
-                //            }
-                //        }
-                //));
+                callbackData.InvokeUnsafe(data.Core.CurrentValue);
             }
 
             DamperHandle handle;

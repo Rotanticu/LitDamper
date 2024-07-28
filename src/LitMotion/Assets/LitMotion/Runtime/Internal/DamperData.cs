@@ -16,10 +16,22 @@ namespace LitDamper
 
         public SpringType springType;
 
+        public double HalfTime;
+
+        public double CurrentValue;
+        public double TargetValue;
+
+        public double motionTime;
+        public double velocity;
+        public double t;
+        public double xi;
+        public double vi;
+
         public static readonly DamperDataCore Default = new()
         {
             springType = SpringType.DoubleSpring,
             PlaybackSpeed = 1f,
+            HalfTime = 0.333d
         };
     }
     

@@ -34,7 +34,7 @@ namespace LitDamper
         public unsafe void Update(double time, double unscaledTime, double realtime)
         {
             var count = storage.Count;
-            using var output = new NativeArray<TValue>(count, Allocator.TempJob, NativeArrayOptions.UninitializedMemory);
+            using var output = new NativeArray<double>(count, Allocator.TempJob, NativeArrayOptions.UninitializedMemory);
             using var completedIndexList = new NativeList<int>(count, Allocator.TempJob);
 
             var deltaTime = time - prevTime;
@@ -57,14 +57,38 @@ namespace LitDamper
                     CompletedIndexList = completedIndexList.AsParallelWriter()
                 };
                 job.Schedule(count, 16).Complete();
-
                 // invoke delegates
                 var callbackSpan = storage.GetCallbacksSpan();
-                var outputPtr = (TValue*)output.GetUnsafePtr();
+                var outputPtr = (double*)output.GetUnsafePtr();
                 for (int i = 0; i < callbackSpan.Length; i++)
                 {
                     var status = (dataPtr + i)->Core.Status;
                     ref var callbackData = ref callbackSpan[i];
+                    if(status is DamperStatus.Playing or DamperStatus.Delayed)
+                    {
+                        if (!DamperUtility.Approximately((dataPtr + i)->Core.TargetValue, callbackData.GetTargetValueUnsafe<double>()))
+                        {
+                            (dataPtr + i)->Core.TargetValue = callbackData.GetTargetValueUnsafe<double>();
+                            (dataPtr + i)->Core.Status = DamperStatus.Scheduled;
+                        }
+                    }
+                    if(status is DamperStatus.Scheduled or DamperStatus.Playing or DamperStatus.Completed)
+                    {
+                        try
+                        {
+                            callbackData.SetCurrentValueUnsafe(outputPtr[i]);
+                        }
+                        catch (Exception ex)
+                        {
+                            DamperDispatcher.GetUnhandledExceptionHandler()?.Invoke(ex);
+                            if (callbackData.CancelOnError)
+                            {
+                                (dataPtr + i)->Core.Status = DamperStatus.Canceled;
+                                callbackData.OnCancelAction?.Invoke();
+                            }
+                        }
+                    }
+
                     if (status == DamperStatus.Playing || (status == DamperStatus.Delayed && !callbackData.SkipValuesDuringDelay))
                     {
                         try

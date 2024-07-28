@@ -296,18 +296,7 @@ namespace LitDamper
             // To avoid duplication of Complete processing, it is treated as canceled internally.
             motion.Core.Status = DamperStatus.Canceled;
 
-
-            var easedEndProgress = callbackData.GetCurrentValueUnsafe<TValue>();
-
-            //var endValue = default(TAdapter).Evaluate(
-            //    ref motion.StartValue,
-            //    ref motion.EndValue,
-            //    ref motion.Options,
-            //    new() { Progress = easedEndProgress }
-            //);
-
-            //todo
-            var endValue = callbackData.GetCurrentValueUnsafe<TValue>();
+            var endValue = callbackData.GetTargetValueUnsafe<TValue>();
 
             try
             {

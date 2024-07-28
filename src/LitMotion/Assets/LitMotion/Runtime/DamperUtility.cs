@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using Unity.Mathematics;
 namespace LitDamper
 {
     //https://github.com/orangeduck/Spring-It-On
@@ -10,30 +12,30 @@ namespace LitDamper
         /// <summary>
         /// ÁÙ½ç×èÄá
         /// </summary>
-        /// <param name="startValue"></param>
+        /// <param name="currentValue"></param>
         /// <param name="velocity"></param>
         /// <param name="targetValue"></param>
         /// <param name="halfLife"></param>
         /// <param name="deltaTime"></param>
         /// <returns></returns>
         public static double SimpleSpringDamperImplicit(
-            double startValue,
+            double currentValue,
             ref double velocity,
             double targetValue,
             double halfLife,
             double deltaTime)
         {
             double y = HalfLifeToDamping(halfLife) / 2.0d;
-            double j0 = startValue - targetValue;
+            double j0 = currentValue - targetValue;
             double j1 = velocity + j0 * y;
             double eydt = FastNegExp(y * deltaTime);
-
-            startValue = eydt * (j0 + j1 * deltaTime) + targetValue;
+            UnityEngine.Debug.Log($"currentValue = {currentValue},velocity = {velocity}, targetValue = {targetValue},halfLife = {halfLife},deltaTime = {deltaTime}");
+            currentValue = eydt * (j0 + j1 * deltaTime) + targetValue;
             velocity = eydt * (velocity - j1 * y * deltaTime);
-            return startValue;
+            return currentValue;
         }
         public static double VelocitySpringDamperImplicit(
-            double startValue,
+            double currentValue,
             ref double velocity,
             ref double xi,
             double targetValue,
@@ -48,14 +50,14 @@ namespace LitDamper
             double targetValue_future = Math.Abs(targetValue - xi) > t_goal_future * targetVelocity ?
                 xi + x_diff * t_goal_future : targetValue;
 
-            double result = SimpleSpringDamperImplicit(startValue, ref velocity, targetValue_future, halfLife, deltaTime);
+            double result = SimpleSpringDamperImplicit(currentValue, ref velocity, targetValue_future, halfLife, deltaTime);
 
             xi = Math.Abs(targetValue - xi) > deltaTime * targetVelocity ? xi + x_diff * deltaTime : targetValue;
             return result;
         }
 
         public static double TimedSpringDamperImplicit(
-            double startValue,
+            double currentValue,
             ref double Velocity,
             ref double xi,
             double targetValue,
@@ -72,7 +74,7 @@ namespace LitDamper
             double targetValue_future = t_goal_future < targetTime ?
                 xi + v_goal * t_goal_future : targetValue;
 
-            double result = SimpleSpringDamperImplicit(startValue, ref Velocity, targetValue_future, halfLife, deltaTime);
+            double result = SimpleSpringDamperImplicit(currentValue, ref Velocity, targetValue_future, halfLife, deltaTime);
 
             xi += v_goal * deltaTime;
 
@@ -80,7 +82,7 @@ namespace LitDamper
         }
 
         public static double DoubleSpringDamperImplicit(
-            double startValue,
+            double currentValue,
             ref double velocity,
             ref double xi,
             ref double vi,
@@ -89,7 +91,7 @@ namespace LitDamper
             double deltaTime)
         {
             xi = SimpleSpringDamperImplicit(xi, ref vi, targetValue, 0.5d * halfLife, deltaTime);
-            return SimpleSpringDamperImplicit(startValue, ref velocity, xi, 0.5d * halfLife, deltaTime);
+            return SimpleSpringDamperImplicit(currentValue, ref velocity, xi, 0.5d * halfLife, deltaTime);
         }
 
         private static double HalfLifeToDamping(double halfLife, double eps = 1e-5f)
@@ -126,7 +128,10 @@ namespace LitDamper
         {
             return x * x;
         }
-
+        public static bool Approximately(double a, double b, double precision = 1e-3f)
+        {
+            return math.abs(b - a) < math.max(1E-06f * math.max(math.abs(a), math.abs(b)), precision);
+        }
 
         public static double SpringDamperExactRatio(
             double x,
