@@ -28,7 +28,7 @@ namespace LitDamper
         [ReadOnly] public double RealDeltaTime;
 
         [WriteOnly] public NativeList<int>.ParallelWriter CompletedIndexList;
-        public NativeArray<double> Output;
+        [WriteOnly] public NativeArray<double> Output;
 
         public void Execute([AssumeRange(0, int.MaxValue)] int index)
         {

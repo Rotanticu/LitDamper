@@ -1,3 +1,4 @@
+using Codice.Client.Common;
 using System;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
@@ -140,6 +141,9 @@ namespace LitDamper
         public void Reset()
         {
             storage.Reset();
+            prevTime = 0d;
+            prevUnscaledTime = 0d;
+            prevRealtime = 0d;
         }
     }
 }
