@@ -29,7 +29,6 @@ namespace LitDamper
             double j0 = currentValue - targetValue;
             double j1 = velocity + j0 * y;
             double eydt = FastNegExp(y * deltaTime);
-            UnityEngine.Debug.Log($"currentValue = {currentValue},velocity = {velocity}, targetValue = {targetValue},halfLife = {halfLife},deltaTime = {deltaTime}");
             currentValue = eydt * (j0 + j1 * deltaTime) + targetValue;
             velocity = eydt * (velocity - j1 * y * deltaTime);
             return currentValue;
